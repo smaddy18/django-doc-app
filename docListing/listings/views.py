@@ -3,4 +3,6 @@ from django.http import HttpResponse
 from django.template import loader
 
 def index(request):
-    return HttpResponse('<h1>Hello Django!</h1>')
+    context = {"message": "Intégration bootstrap réussie !!!"}
+    template = loader.get_template("listings/index.html")
+    return HttpResponse(template.render(context, request))

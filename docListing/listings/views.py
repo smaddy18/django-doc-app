@@ -45,4 +45,4 @@ def displayDocs(request):
         
         return render(request, "listings/display.html", context)
     else:
-        return HttpResponseRedirect('forms/')
+        return HttpResponseRedirect('/') # Retour au formulaire

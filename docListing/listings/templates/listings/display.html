@@ -1,12 +1,17 @@
 {% extends 'listings/base.html' %}
 
 {% block content %}
+    <h2 class="mt-4">AFFICHAGE DES DOCUMENTS PAR CLUSTER</h2>
+    <p class="mt-2">Le fichier chargé contient <mark>{{clusters|length}} clusters</mark> et <mark>{{data|length}} documents</mark> au total</p>
+    <p class="mt-2">Pour voir le détail de chaque document il faut dérouler la petite flèche à côté du titre</p>
+    <p class="mt-2">Le bouton en bas de la page vous permet de charger un nouveau fichier</p>
+
     <div class="row mt-4">
         {% for cluster in clusters %}
             <div class="col-12 mb-5">
                 <div class="card shadow-lg mr-2 bg-white rounded">
                     <div class="card-header text-center">
-                        Cluster N°{{cluster}}
+                        <h5>Cluster N°{{cluster}}</h5>
                     </div>
                     <div class="card-body">
                         {% for doc in data %}
@@ -15,11 +20,11 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="{{doc.Id}}">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{doc.Id}}" aria-expanded="true" aria-controls="collapse{{doc.Id}}">
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <h6 class="card-title">{{doc.Title}}</h6>
+                                                <div class="row w-100">
+                                                    <div class="col-10">
+                                                        <h5 class="card-title">{{doc.Title}}</h5>
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-2">
                                                         <p class="card-text">Cité : {{doc.Citation_count}} fois</p>
                                                     </div>
                                                 </div>
@@ -29,15 +34,45 @@
                                             <div class="accordion-body">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <div class="row">
+                                                        <div class="row w-100">
                                                             <div class="col-9">
-                                                                <h6>Références aimées :</h6>
+                                                                <h6>Number of references linked :</h6>
                                                             </div>
                                                             <div class="col-3">
-                                                                <p class="card-text">5.0</p>
+                                                                <p class="card-text">{{doc.Number_of_references_linked}}</p>
                                                             </div>
                                                         </div>
-                                                    </li>   
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row w-100">
+                                                            <div class="col-9">
+                                                                <h6>Total number of links :</h6>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="card-text">{{doc.Total_number_of_links}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row w-100">
+                                                            <div class="col-9">
+                                                                <h6>Localhubness :</h6>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="card-text">{{doc.Localhubness}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row w-100">
+                                                            <div class="col-9">
+                                                                <h6>Number of links within the cluster :</h6>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="card-text">{{doc.Number_of_links_within_the_cluster}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

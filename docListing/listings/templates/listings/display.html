@@ -1,0 +1,54 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+    <div class="row mt-4">
+        {% for cluster in clusters %}
+            <div class="col-12 mb-5">
+                <div class="card shadow-lg mr-2 bg-white rounded">
+                    <div class="card-header text-center">
+                        Cluster N°{{cluster}}
+                    </div>
+                    <div class="card-body">
+                        {% for doc in data %}
+                            <div class="accordion" id="{{cluster}}">
+                                {% if doc.Cluster == cluster %} 
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="{{doc.Id}}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{doc.Id}}" aria-expanded="true" aria-controls="collapse{{doc.Id}}">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <h6 class="card-title">{{doc.Title}}</h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p class="card-text">Cité : {{doc.Citation_count}} fois</p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{doc.Id}}" class="accordion-collapse collapse" aria-labelledby="{{doc.Id}}" data-bs-parent="#{{cluster}}">
+                                            <div class="accordion-body">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-9">
+                                                                <h6>Références aimées :</h6>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="card-text">5.0</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="/" class="btn btn-outline-success">Charger un autre fichier</a>
+{% endblock %}

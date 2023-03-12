@@ -1,8 +1,13 @@
 {% extends 'listings/base.html' %}
 
 {% block content %}
-<div class="alert alert-success">
-    <p>{{ message }}</p>
-</div>
-<h1>here you can load your JSON file</h1>
+
+<h1>Charger votre ficher JSON ici</h1>
+<form enctype="multipart/form-data" action="displayDocs/" method="post">
+    <div class="form-group mt-4 mr-4">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-primary">Charger</button>
+    </div>
+</form>
 {% endblock %}
